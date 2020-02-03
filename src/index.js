@@ -102,6 +102,14 @@ FastImage.preload = (sources, onProgress, onComplete) => {
     return onComplete()
 }
 
+FastImage.clearMemoryCache = () => {
+    preloaderManager.clearMemoryCache()
+}
+
+FastImage.clearDiskCache = () => {
+    preloaderManager.clearDiskCache()
+}
+
 FastImage.defaultProps = {
     resizeMode: FastImage.resizeMode.cover,
 }

@@ -158,6 +158,8 @@ interface FastImageStatic extends React.ComponentClass<FastImageProperties> {
         onProgress?: PreloadProgressHandler,
         onComplete?: PreloadCompletionHandler,
     ): void
+    clearMemoryCache(): void
+    clearDiskCache(): void
 }
 
 declare var FastImage: FastImageStatic

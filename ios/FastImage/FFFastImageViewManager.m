@@ -1,5 +1,7 @@
 #import "FFFastImageViewManager.h"
 #import "FFFastImageView.h"
+#import <SDWebImage/SDImageCache.h>
+#import <SDWebImage/SDWebImagePrefetcher.h>
 
 @implementation FFFastImageViewManager
 
@@ -17,5 +19,16 @@ RCT_EXPORT_VIEW_PROPERTY(onFastImageError, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFastImageLoad, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFastImageLoadEnd, RCTDirectEventBlock)
 RCT_REMAP_VIEW_PROPERTY(tintColor, imageColor, UIColor)
+
+RCT_EXPORT_METHOD(clearMemoryCache)
+{
+    [SDImageCache.sharedImageCache clearMemory];
+}
+
+
+RCT_EXPORT_METHOD(clearDiskCache)
+{
+    [SDImageCache.sharedImageCache clearDiskOnCompletion:^(){}];
+}
 
 @end
