@@ -38,7 +38,7 @@ class FastImagePreloaderModule extends ReactContextBaseJavaModule {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                FastImagePreloaderListener preloader = new FastImagePreloaderListener(getReactApplicationContext(), preloaderId, sources.size());
+                FastImagePreloaderListener listener = new FastImagePreloaderListener(getReactApplicationContext(), preloaderId, sources.size());
                 for (int i = 0; i < sources.size(); i++) {
                     final ReadableMap source = sources.getMap(i);
                     final FastImageSource imageSource = FastImageViewConverter.getImageSource(activity, source);
@@ -56,6 +56,7 @@ class FastImagePreloaderModule extends ReactContextBaseJavaModule {
                                     imageSource.isBase64Resource() ? imageSource.getSource() :
                                     imageSource.isResource() ? imageSource.getUri() : imageSource.getGlideUrl()
                             )
+                            .listener(listener)
                             .apply(FastImageViewConverter.getOptions(activity, imageSource, source))
                             .preload();
                 }
